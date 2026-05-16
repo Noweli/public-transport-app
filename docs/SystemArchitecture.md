@@ -1,63 +1,48 @@
 ﻿# System architecture of public transport app
 
-## System Diagram
+Simple public transport management system that considers three user groups: Public User, Company User and Data User.
 
-```mermaid
-C4Context
-    title Public Transport System Context
-    
-    Enterprise_Boundary(b0, "App Boundary") {
-        Person(userA, "Public User A")
-        Person(companyUserA, "Company User A")
-        Person(dataUserA, "Data User A")
-        
-        System(frontend, "Public Transport App", "Allows public users to check available lines and departure times<br/>
-        allows company users to manage lines and departure times")
-        System(monitoring, "Public Transport Monitoring", "App metrics")
-    }
- 
-    BiRel(userA, frontend, "checks data")
-    BiRel(companyUserA, frontend, "checks & manipulates data")
-    
-    Rel(monitoring, dataUserA, "monitors")
-    
-    UpdateLayoutConfig($c4ShapeInRow="3")
-```
+Public User:
+- Should be able to get information about available lanes
+- Should be able to get information about available stops (e.g. bus stops)
 
-## Container Diagram
+Company User:
+- Should be able to manipulate lane data
+- Should be able to manipulate vehicle data
+- Should be able to manipulate stops data
 
-```mermaid
-C4Container
-    title Public Transport Container Diagram
+Data User:
+- Should be able to get application metrics
 
-    Person(userA, "Public User A")
-    Person(companyUserA, "Company User A")
-    Person(dataUserA, "Data User A")
-    
-    Container_Boundary(b0, "Kubernetes") {
-        Container(frontend, "Single-Page Application", "Angular WebApp")
-        Container(backend, "Public Transport API", ".NET 10 API")
-        Container(monitoring, "Public Transport Monitoring", "Graphana")
-        ContainerDb(db, "Public Transport Database", "PostreSQL")
-    }
-    
-    BiRel(userA, frontend, "checks")
-    BiRel(companyUserA, frontend, "checks & manipulates data")
-    BiRel(frontend, backend, "Rest HTTP calls")
-    
-    Rel(backend, db, "stores")
-    Rel(backend, monitoring, "sends metrics")
-    Rel(monitoring, dataUserA, "monitors")
+## Limitations
 
-    UpdateRelStyle(backend, monitoring, $offsetX="-40")
-    UpdateRelStyle(backend, monitoring, $offsetY="-20")
-    UpdateRelStyle(backend, db, $offsetX="-40")
-    UpdateRelStyle(frontend, backend, $offsetX="-40")
-    UpdateRelStyle(frontend, backend, $offsetY="-20")
-    
-    UpdateLayoutConfig($c4ShapeInRow="3")
-```
+- Authentication & Authorization to be a simple JWT flow
+  - Two roles: User, Admin
+  - No refresh tokens
+  - No third-party auth providers
+  - Simple encryption
 
-## Component Diagram
+## Possible expansion for AWS deployment
 
-...
+- Authentication & Authorization to be held by AWS Cognito
+- PostgreSQL as AWS RDS (Aurora)
+- AWS ElastiCache for Redis deployment
+- AWS CloudFront for WebApp CDN (can include API)
+
+## System, Container & Component Diagram
+
+### System Diagram
+
+<img src="images/SystemContext.png" alt="System Context Diagram">
+
+<br/><br/><br/>
+
+### Container Diagram
+
+<img src="images/ContainerDiagram.png" alt="Container Diagram">
+
+<br/><br/><br/>
+
+### Component Diagram
+
+<img src="images/ComponentDiagram.png" alt="Component Diagram">
