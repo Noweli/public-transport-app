@@ -27,3 +27,9 @@
 <img src="images/Entities.png" alt="Entities">
 
 <br/><br/><br/>
+
+### Line Controller
+
+<img src="images/Component_LineController.png" alt="Line Controller Diagram">
+
+<br/><br/><br/>

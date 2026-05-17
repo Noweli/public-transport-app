@@ -1,4 +1,4 @@
-<mxfile host="Electron" pages="4">
+<mxfile host="Electron" pages="5">
   <diagram name="SystemContext" id="qOy4NsDr0-I4BXYE8kBr">
     <mxGraphModel dx="2347" dy="961" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -91,7 +91,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="xO3LHmEJNESaAeGuBz_M" name="ComponentDiagram">
-    <mxGraphModel dx="3621" dy="1144" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="3761" dy="1201" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -126,7 +126,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="humSipDslBax_d7RbI6V-4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Lines Controller&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;[Manages available lines]&lt;/div&gt;" vertex="1">
+        <mxCell id="humSipDslBax_d7RbI6V-4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Line Controller&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;[Manages available lines]&lt;/div&gt;" vertex="1">
           <mxGeometry height="80" width="160" x="-760" y="360" as="geometry" />
         </mxCell>
         <mxCell id="humSipDslBax_d7RbI6V-23" edge="1" parent="1" source="humSipDslBax_d7RbI6V-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=classic;startFill=1;" target="humSipDslBax_d7RbI6V-11">
@@ -255,6 +255,112 @@
         </mxCell>
         <mxCell id="tPb0mMyZyKrFAsHL2au_-13" edge="1" parent="1" source="tPb0mMyZyKrFAsHL2au_-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;endFill=0;" target="tPb0mMyZyKrFAsHL2au_-6" value="">
           <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="kzWW55T21LaAwkZuXp6a" name="Component_LinesController">
+    <mxGraphModel dx="2934" dy="1201" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="d1o2hq9NY2J4_0CucijK-1" parent="1" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;width=140;height=30;" value="Line Controller" vertex="1">
+          <mxGeometry height="580" width="880" x="40" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="sGkM1pyjkgq60snVzHdC-1" parent="1" style="align=left;overflow=fill;html=1;dropTarget=0;whiteSpace=wrap;" value="&lt;p style=&quot;margin:0px;margin-top:6px;text-align:center;&quot;&gt;&lt;b&gt;Line Controller&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:8px;&quot;&gt;+ [ApiController]&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:8px;&quot;&gt;+ [Route(&quot;api/[controller]&quot;])]&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:8px;&quot;&gt;+ Extends ControllerBase&lt;/p&gt;" vertex="1">
+          <mxGeometry height="90" width="180" x="40" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="sGkM1pyjkgq60snVzHdC-2" parent="sGkM1pyjkgq60snVzHdC-1" style="shape=component;jettyWidth=8;jettyHeight=4;" value="" vertex="1">
+          <mxGeometry height="20" relative="1" width="20" x="1" as="geometry">
+            <mxPoint x="-24" y="4" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sGkM1pyjkgq60snVzHdC-4" parent="1" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;Interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;IUseCase&amp;lt;out T&amp;gt;&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ T ExecuteAsync()&lt;/p&gt;" vertex="1">
+          <mxGeometry height="100" width="190" x="280" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="2Cwkou_m9P0JsGul2eqM-16" edge="1" parent="1" source="2Cwkou_m9P0JsGul2eqM-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="2Cwkou_m9P0JsGul2eqM-2" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2Cwkou_m9P0JsGul2eqM-1" parent="1" style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;" value="&lt;div&gt;[HttpGet(&quot;by-name&quot;)]&lt;/div&gt;GetByName([FromBody] string name)" vertex="1">
+          <mxGeometry height="60" width="170" x="290" y="395" as="geometry" />
+        </mxCell>
+        <mxCell id="2Cwkou_m9P0JsGul2eqM-18" edge="1" parent="1" source="2Cwkou_m9P0JsGul2eqM-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="2Cwkou_m9P0JsGul2eqM-17" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2Cwkou_m9P0JsGul2eqM-2" parent="1" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;GetByNameUseCase : IUseCase&amp;lt;Result&amp;gt;&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ required string Name&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ ExecuteAsync()&lt;/p&gt;" vertex="1">
+          <mxGeometry height="90" width="160" x="510" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="2Cwkou_m9P0JsGul2eqM-15" edge="1" parent="1" source="2Cwkou_m9P0JsGul2eqM-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="2Cwkou_m9P0JsGul2eqM-1" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2Cwkou_m9P0JsGul2eqM-14" parent="1" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;text-decoration:underline;&quot;&gt;&lt;b&gt;Request DTO JSON&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:8px;&quot;&gt;+ string name&lt;/p&gt;" vertex="1">
+          <mxGeometry height="50" width="160" x="80" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="2Cwkou_m9P0JsGul2eqM-17" parent="1" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;text-decoration:underline;&quot;&gt;&lt;b&gt;Response DTO JSON&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:8px;&quot;&gt;+ line DTO&lt;/p&gt;" vertex="1">
+          <mxGeometry height="50" width="160" x="720" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="2Cwkou_m9P0JsGul2eqM-19" edge="1" parent="1" source="2Cwkou_m9P0JsGul2eqM-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="2Cwkou_m9P0JsGul2eqM-22" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2Cwkou_m9P0JsGul2eqM-20" parent="1" style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;" value="&lt;div&gt;[HttpGet]&lt;/div&gt;GetAll()" vertex="1">
+          <mxGeometry height="60" width="170" x="290" y="525" as="geometry" />
+        </mxCell>
+        <mxCell id="2Cwkou_m9P0JsGul2eqM-21" edge="1" parent="1" source="2Cwkou_m9P0JsGul2eqM-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="2Cwkou_m9P0JsGul2eqM-25" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2Cwkou_m9P0JsGul2eqM-22" parent="1" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;GetAllUseCase : IUseCase&amp;lt;Result&amp;gt;&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ ExecuteAsync()&lt;/p&gt;" vertex="1">
+          <mxGeometry height="90" width="160" x="510" y="510" as="geometry" />
+        </mxCell>
+        <mxCell id="2Cwkou_m9P0JsGul2eqM-23" edge="1" parent="1" source="2Cwkou_m9P0JsGul2eqM-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="2Cwkou_m9P0JsGul2eqM-20" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2Cwkou_m9P0JsGul2eqM-24" parent="1" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;text-decoration:underline;&quot;&gt;&lt;b&gt;Request&lt;/b&gt;&lt;/p&gt;" vertex="1">
+          <mxGeometry height="30" width="160" x="80" y="540" as="geometry" />
+        </mxCell>
+        <mxCell id="2Cwkou_m9P0JsGul2eqM-25" parent="1" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;text-decoration:underline;&quot;&gt;&lt;b&gt;Response DTO JSON&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:8px;&quot;&gt;+ Collection of line DTOs&lt;/p&gt;" vertex="1">
+          <mxGeometry height="50" width="160" x="720" y="530" as="geometry" />
+        </mxCell>
+        <mxCell id="2Cwkou_m9P0JsGul2eqM-33" edge="1" parent="1" source="2Cwkou_m9P0JsGul2eqM-34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="2Cwkou_m9P0JsGul2eqM-36" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2Cwkou_m9P0JsGul2eqM-34" parent="1" style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;" value="&lt;div&gt;[HttpPost]&lt;/div&gt;&lt;div&gt;[Authorize]&lt;/div&gt;Create([FromBody] string name)" vertex="1">
+          <mxGeometry height="75" width="170" x="290" y="647.5" as="geometry" />
+        </mxCell>
+        <mxCell id="2Cwkou_m9P0JsGul2eqM-35" edge="1" parent="1" source="2Cwkou_m9P0JsGul2eqM-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="2Cwkou_m9P0JsGul2eqM-39" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2Cwkou_m9P0JsGul2eqM-36" parent="1" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;CreateUseCase : IUseCase&amp;lt;Result&amp;gt;&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ required string Name&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ ExecuteAsync()&lt;/p&gt;" vertex="1">
+          <mxGeometry height="90" width="160" x="510" y="640" as="geometry" />
+        </mxCell>
+        <mxCell id="2Cwkou_m9P0JsGul2eqM-37" edge="1" parent="1" source="2Cwkou_m9P0JsGul2eqM-38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="2Cwkou_m9P0JsGul2eqM-34" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2Cwkou_m9P0JsGul2eqM-38" parent="1" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;text-decoration:underline;&quot;&gt;&lt;b&gt;Request DTO JSON&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:8px;&quot;&gt;+ string name&lt;/p&gt;" vertex="1">
+          <mxGeometry height="50" width="160" x="80" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="2Cwkou_m9P0JsGul2eqM-39" parent="1" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;text-decoration:underline;&quot;&gt;&lt;b&gt;Response DTO JSON&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:8px;&quot;&gt;+ line DTO&lt;/p&gt;" vertex="1">
+          <mxGeometry height="50" width="160" x="720" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="YmAsJGYZy3hIgcD80xj6-1" edge="1" parent="1" source="YmAsJGYZy3hIgcD80xj6-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="YmAsJGYZy3hIgcD80xj6-4" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YmAsJGYZy3hIgcD80xj6-2" parent="1" style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;" value="&lt;div&gt;[HttpDelete]&lt;/div&gt;&lt;div&gt;[Authorize]&lt;/div&gt;Delete([FromBody] string name)" vertex="1">
+          <mxGeometry height="75" width="170" x="290" y="777.5" as="geometry" />
+        </mxCell>
+        <mxCell id="YmAsJGYZy3hIgcD80xj6-3" edge="1" parent="1" source="YmAsJGYZy3hIgcD80xj6-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="YmAsJGYZy3hIgcD80xj6-7" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YmAsJGYZy3hIgcD80xj6-4" parent="1" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;DeleteUseCase : IUseCase&amp;lt;Result&amp;gt;&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ required string Name&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ ExecuteAsync()&lt;/p&gt;" vertex="1">
+          <mxGeometry height="90" width="160" x="510" y="770" as="geometry" />
+        </mxCell>
+        <mxCell id="YmAsJGYZy3hIgcD80xj6-5" edge="1" parent="1" source="YmAsJGYZy3hIgcD80xj6-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="YmAsJGYZy3hIgcD80xj6-2" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YmAsJGYZy3hIgcD80xj6-6" parent="1" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;text-decoration:underline;&quot;&gt;&lt;b&gt;Request DTO JSON&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:8px;&quot;&gt;+ string name&lt;/p&gt;" vertex="1">
+          <mxGeometry height="50" width="160" x="80" y="790" as="geometry" />
+        </mxCell>
+        <mxCell id="YmAsJGYZy3hIgcD80xj6-7" parent="1" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;text-decoration:underline;&quot;&gt;&lt;b&gt;Response DTO JSON&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:8px;&quot;&gt;+ line DTO&lt;/p&gt;" vertex="1">
+          <mxGeometry height="50" width="160" x="720" y="790" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
