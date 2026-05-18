@@ -5,8 +5,8 @@ namespace PublicTransport.Core.Application.Interfaces.Persistence;
 
 public interface IVehicleRepository
 {
-    Task<Result<Vehicle>> CreateAsync(Vehicle vehicle);
-    Task<Result<Vehicle>> GetAsync(string name);
-    Task<Result<ICollection<Vehicle>>> GetAllAsync();
-    Task<Result<Vehicle>> DeleteAsync(string name);
+    Task<Result<Vehicle>> CreateAsync(Vehicle vehicle, CancellationToken cancellationToken = default);
+    Task<Result<Vehicle>> GetByNameAsync(string name, CancellationToken cancellationToken = default);
+    Task<Result<ICollection<Vehicle>>> GetAllAsync(CancellationToken cancellationToken = default);
+    Task<Result<Vehicle>> DeleteAsync(Vehicle vehicle, CancellationToken cancellationToken = default);
 }
