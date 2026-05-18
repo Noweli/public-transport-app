@@ -48,7 +48,7 @@
 
 ### LineStop Controller
 
-<img src="images/COmponent_LineStopController.png" alt="LineStop Controller Diagram">
+<img src="images/Component_LineStopController.png" alt="LineStop Controller Diagram">
 
 <br/><br/><br/>
 
