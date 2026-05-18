@@ -33,3 +33,21 @@
 <img src="images/Component_LineController.png" alt="Line Controller Diagram">
 
 <br/><br/><br/>
+
+### Vehicle Controller
+
+<img src="images/Component_VehicleController.png" alt="Vehicle Controller Diagram">
+
+<br/><br/><br/>
+
+### Stop Controller
+
+<img src="images/Component_StopController.png" alt="Stop Controller Diagram">
+
+<br/><br/><br/>
+
+### User Controller
+
+<img src="images/Component_UserController.png" alt="User Controller Diagram">
+
+<br/><br/><br/>
