@@ -17,6 +17,7 @@
 - [ ] UseCase implementation in application layer along with DTO creation, validators and mappers
 - [ ] Controller implementation in presentation layer
 - [ ] AppSettings configuration
+- [ ] JWT Token auth setup
 
 ## Testing
 
