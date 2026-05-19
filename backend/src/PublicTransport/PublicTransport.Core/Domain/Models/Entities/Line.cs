@@ -2,6 +2,6 @@
 
 public sealed class Line
 {
-    public int Id { get; set; }
+    public required Guid Id { get; set; }
     public required string Name { get; set; }
 }

@@ -2,7 +2,7 @@
 
 public sealed class Vehicle
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
     public required string Name { get; set; }
     public string? AdditionalInformation { get; set; }
 }

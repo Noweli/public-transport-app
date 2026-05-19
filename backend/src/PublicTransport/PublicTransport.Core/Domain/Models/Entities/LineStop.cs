@@ -2,7 +2,7 @@
 
 public sealed class LineStop
 {
-    public int Id { get; set; }
+    public required Guid Id { get; set; }
     public required int LineId { get; set; }
     public required int StopId { get; set; }
     public int StopOrder { get; set; }
