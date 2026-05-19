@@ -7,6 +7,6 @@ public interface ILineRepository
 {
     Task<Result<Line>> CreateAsync(Line line, CancellationToken cancellationToken = default);
     Task<Result<Line>> GetByNameAsync(string name, CancellationToken cancellationToken = default);
-    Task<Result<ICollection<Line>>> GetAllAsync(CancellationToken cancellationToken = default);
+    Task<Result<IReadOnlyCollection<Line>>> GetAllAsync(CancellationToken cancellationToken = default);
     Task<Result<Line>> DeleteAsync(Line line, CancellationToken cancellationToken = default);
 }

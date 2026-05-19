@@ -8,6 +8,6 @@ public interface IStopRepository
     Task<Result<Stop>> CreateAsync(Stop stop, CancellationToken cancellationToken = default);
     Task<Result<Stop>> GetByNameAsync(string name, CancellationToken cancellationToken = default);
     Task<Result<Stop>> GetByStreetAsync(string street, CancellationToken cancellationToken = default);
-    Task<Result<ICollection<Stop>>> GetAllAsync(CancellationToken cancellationToken = default);
+    Task<Result<IReadOnlyCollection<Stop>>> GetAllAsync(CancellationToken cancellationToken = default);
     Task<Result<Stop>> DeleteAsync(Stop stop, CancellationToken cancellationToken = default);
 }
