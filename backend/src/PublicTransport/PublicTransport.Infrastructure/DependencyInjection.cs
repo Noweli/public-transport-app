@@ -14,8 +14,8 @@ public static class DependencyInjection
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         var otelEndpointString = configuration.GetValue<string>("OTEL_ENDPOINT") ?? "localhost:4317";
-        var otelEndpoint = new Uri(otelEndpointString);
         var serviceName = configuration.GetValue<string>("SERVICE_NAME") ?? "PublicTransportApi";
+        var otelEndpoint = new Uri(otelEndpointString);
 
         services.AddLogging(builder =>
         {
