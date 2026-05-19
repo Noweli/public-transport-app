@@ -46,6 +46,12 @@
 
 <br/><br/><br/>
 
+### LineStop Controller
+
+<img src="images/Component_LineStopController.png" alt="LineStop Controller Diagram">
+
+<br/><br/><br/>
+
 ### User Controller
 
 <img src="images/Component_UserController.png" alt="User Controller Diagram">
