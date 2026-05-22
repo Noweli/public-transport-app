@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using OpenTelemetry.Exporter;
 using OpenTelemetry.Logs;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
@@ -13,7 +14,7 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-        var otelEndpointString = configuration.GetValue<string>("OTEL_ENDPOINT") ??
+        var otelEndpointString = configuration.GetValue<string>("OTEL_EXPORTER_OTLP_ENDPOINT") ??
                                  throw new Exception("OpenTelemetry connection string not found");
         var serviceName = configuration.GetValue<string>("SERVICE_NAME") ??
                           throw new Exception("Service name not found");
@@ -30,7 +31,11 @@ public static class DependencyInjection
                 options.SetResourceBuilder(resourceBuilder);
                 options.IncludeFormattedMessage = true;
                 options.IncludeScopes = true;
-                options.AddOtlpExporter(opt => opt.Endpoint = otelEndpoint);
+                options.AddOtlpExporter(opt =>
+                {
+                    opt.Endpoint = otelEndpoint;
+                    opt.Protocol = OtlpExportProtocol.HttpProtobuf;
+                });
             });
         });
 
@@ -64,14 +69,15 @@ public static class DependencyInjection
         services.AddOpenTelemetry()
             .ConfigureResource(resourceBuilder => resourceBuilder.AddService(serviceName))
             .WithMetrics(config => config
+                .AddMeter(serviceName)
                 .AddAspNetCoreInstrumentation()
                 .AddHttpClientInstrumentation()
                 .AddRuntimeInstrumentation()
-                .AddOtlpExporter(options => options.Endpoint = otelEndpoint))
-            .WithTracing(config => config
-                .AddAspNetCoreInstrumentation()
-                .AddHttpClientInstrumentation()
-                .AddOtlpExporter(options => options.Endpoint = otelEndpoint));
+                .AddOtlpExporter(options =>
+                {
+                    options.Endpoint = otelEndpoint;
+                    options.Protocol = OtlpExportProtocol.HttpProtobuf;
+                }));
 
 
         return services;
