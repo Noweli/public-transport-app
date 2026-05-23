@@ -11,26 +11,21 @@ processors:
 
 exporters:
   prometheus:
-    endpoint: "http://prometheus:9090"
+    endpoint: "0.0.0.0:8889"
   otlp/tempo:
-    endpoint: "tempo:4317"
+    endpoint: "local-grafana-tempo:4317"
     tls: { insecure: true }
-  otlphttp/logs:
-    endpoint: "http://loki:3100/otlp"
-    tls:
-      insecure: true
+  otlphttp/loki:
+    endpoint: "http://local-grafana-loki:3100/otlp"
 
 service:
   pipelines:
     traces:
-      receivers: [ otlp ]
-      processors: [ batch ]
-      exporters: [ otlp/tempo ]
+      receivers: [otlp]
+      exporters: [otlp/tempo]
     metrics:
-      receivers: [ otlp ]
-      processors: [ batch ]
-      exporters: [ prometheusremotewrite ]
+      receivers: [otlp]
+      exporters: [prometheus]
     logs:
-      receivers: [ otlp ]
-      processors: [ batch ]
-      exporters: [ otlphttp/logs ]
+      receivers: [otlp]
+      exporters: [otlphttp/loki]

@@ -29,24 +29,25 @@ services:
       - ./configs/otel-collector.yaml:/etc/otel-collector.yaml:Z
     ports:
       - "4317:4317"
+      - "4318:4318"
+      - "8889:8889"
   
   prometheus:
-    image: docker.io/prom/prometheus:v3
+    image: prom/prometheus:v3
     container_name: local-prometheus
     command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
-      - '--web.enable-otlp-receiver'
-    ports:
-      - "9090:9090"
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --web.enable-remote-write-receiver
     volumes:
       - ./configs/prometheus.yml:/etc/prometheus/prometheus.yml:Z
       - prom-data:/prometheus:Z
-    restart: always
+    ports:
+      - "9090:9090"
     
   grafana-loki:
-    image: docker.io/grafana/loki:3.7
+    image: grafana/loki:3.7
     container_name: local-grafana-loki
-    command: -config.file=/etc/loki/local-config.yaml
+    command: [ "-config.file=/etc/loki/local-config.yaml" ]
     ports:
       - "3100:3100"
     volumes:
@@ -55,13 +56,13 @@ services:
     
   grafana-tempo:
     image: grafana/tempo:2.9.2
-    command: "-config.file=/etc/tempo.yaml"
-    restart: always
+    container_name: local-grafana-tempo
+    command: [ "-config.file=/etc/tempo.yaml" ]
     volumes:
-      - ./configs/tempo.yaml:/etc/tempo.yaml
+      - ./configs/tempo.yaml:/etc/tempo.yaml:Z
       - tempo-data:/var/tempo
     ports:
-      - "3200:3200" # tempo
+      - "3200:3200"
 
   grafana:
     image: docker.io/grafana/grafana:13.0
@@ -72,6 +73,8 @@ services:
       - GF_AUTH_ANONYMOUS_ENABLED=true
       - GF_AUTH_ANONYMOUS_ENABLED=true
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+    volumes:
+      - ./configs/datasources.yml:/etc/grafana/provisioning/datasources/datasources.yml:Z
     restart: always
     
     
