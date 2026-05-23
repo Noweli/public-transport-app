@@ -18,7 +18,7 @@ public static class DependencyInjection
                                  throw new Exception("OpenTelemetry connection string not found");
         var serviceName = configuration.GetValue<string>("SERVICE_NAME") ??
                           throw new Exception("Service name not found");
-        var otelEndpoint = new Uri(otelEndpointString);
+        var otelUri = new Uri(otelEndpointString);
 
         services.AddLogging(builder =>
         {
@@ -33,8 +33,8 @@ public static class DependencyInjection
                 options.IncludeScopes = true;
                 options.AddOtlpExporter(opt =>
                 {
-                    opt.Endpoint = otelEndpoint;
-                    opt.Protocol = OtlpExportProtocol.HttpProtobuf;
+                    opt.Endpoint = otelUri;
+                    opt.Protocol = OtlpExportProtocol.Grpc;
                 });
             });
         });
@@ -53,7 +53,7 @@ public static class DependencyInjection
                                               throw new Exception("L1_CACHE_EXPIRATION_SECONDS not found");
             var l2CacheExpirationFromConfig = configuration.GetValue<int?>("L2_CACHE_EXPIRATION_SECONDS") ??
                                               throw new Exception("L2_CACHE_EXPIRATION_SECONDS not found");
-            
+
             var l1CacheExpiration = TimeSpan.FromSeconds(l1CacheExpirationFromConfig);
             var l2CacheExpiration = TimeSpan.FromSeconds(l2CacheExpirationFromConfig);
 
@@ -75,8 +75,16 @@ public static class DependencyInjection
                 .AddRuntimeInstrumentation()
                 .AddOtlpExporter(options =>
                 {
-                    options.Endpoint = otelEndpoint;
-                    options.Protocol = OtlpExportProtocol.HttpProtobuf;
+                    options.Endpoint = otelUri;
+                    options.Protocol = OtlpExportProtocol.Grpc;
+                }))
+            .WithTracing(config => config
+                .AddAspNetCoreInstrumentation()
+                .AddHttpClientInstrumentation()
+                .AddOtlpExporter(options =>
+                {
+                    options.Endpoint = otelUri; 
+                    options.Protocol = OtlpExportProtocol.Grpc;
                 }));
 
 

@@ -20,6 +20,15 @@ services:
     volumes:
       - redis-data:/data:Z
     restart: always
+    
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:latest
+    container_name: local-otel-collector
+    command: [ "--config=/etc/otel-collector.yaml" ]
+    volumes:
+      - ./configs/otel-collector.yaml:/etc/otel-collector.yaml:Z
+    ports:
+      - "4317:4317"
   
   prometheus:
     image: docker.io/prom/prometheus:v3
@@ -30,11 +39,45 @@ services:
     ports:
       - "9090:9090"
     volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml:Z
+      - ./configs/prometheus.yml:/etc/prometheus/prometheus.yml:Z
       - prom-data:/prometheus:Z
     restart: always
+    
+  grafana-loki:
+    image: docker.io/grafana/loki:3.7
+    container_name: local-grafana-loki
+    command: -config.file=/etc/loki/local-config.yaml
+    ports:
+      - "3100:3100"
+    volumes:
+      - ./configs/loki-config.yaml:/etc/loki/local-config.yaml:Z
+      - loki-data:/loki:Z
+    
+  grafana-tempo:
+    image: grafana/tempo:2.9.2
+    command: "-config.file=/etc/tempo.yaml"
+    restart: always
+    volumes:
+      - ./configs/tempo.yaml:/etc/tempo.yaml
+      - tempo-data:/var/tempo
+    ports:
+      - "3200:3200" # tempo
+
+  grafana:
+    image: docker.io/grafana/grafana:13.0
+    container_name: local-grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+    restart: always
+    
     
 volumes:
   pg-data:
   redis-data:
   prom-data:
+  loki-data:
+  tempo-data:
