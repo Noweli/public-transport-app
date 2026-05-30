@@ -1,5 +1,4 @@
-﻿apiVersion: 1
-datasources:
+﻿datasources:
   - name: Prometheus
     type: prometheus
     url: http://local-prometheus:9090
