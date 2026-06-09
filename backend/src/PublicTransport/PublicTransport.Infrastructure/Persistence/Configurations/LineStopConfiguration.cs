@@ -4,7 +4,7 @@ using PublicTransport.Core.Domain.Models.Entities;
 
 namespace PublicTransport.Infrastructure.Persistence.Configurations;
 
-public class LineStopConfiguration : IEntityTypeConfiguration<LineStop>
+public sealed class LineStopConfiguration : IEntityTypeConfiguration<LineStop>
 {
     public void Configure(EntityTypeBuilder<LineStop> builder)
     {
