@@ -7,7 +7,8 @@ using PublicTransport.Core.Domain.Models.Entities;
 
 namespace PublicTransport.Infrastructure.Persistence.Repositories;
 
-public class LineRepository(ILogger<LineRepository> logger, ApplicationDbContext applicationDbContext) : ILineRepository
+public sealed class LineRepository(ILogger<LineRepository> logger, ApplicationDbContext applicationDbContext)
+    : ILineRepository
 {
     public async Task<RepositoryResult<Guid>> CreateAsync(Line line, CancellationToken cancellationToken = default)
     {
@@ -35,8 +36,8 @@ public class LineRepository(ILogger<LineRepository> logger, ApplicationDbContext
     {
         try
         {
-            var line = await applicationDbContext.Lines.FirstOrDefaultAsync(line => line.Name == name,
-                cancellationToken);
+            var line = await applicationDbContext.Lines.FirstOrDefaultAsync(
+                line => line.Name == name, cancellationToken);
 
             return line is null
                 ? new RepositoryResult<Line?>(RepositoryResultCode.NotFound, null)
@@ -54,7 +55,8 @@ public class LineRepository(ILogger<LineRepository> logger, ApplicationDbContext
         }
     }
 
-    public async Task<RepositoryResult<IReadOnlyCollection<Line>>> GetAllAsync(CancellationToken cancellationToken = default)
+    public async Task<RepositoryResult<IReadOnlyCollection<Line>>> GetAllAsync(
+        CancellationToken cancellationToken = default)
     {
         try
         {
@@ -79,7 +81,7 @@ public class LineRepository(ILogger<LineRepository> logger, ApplicationDbContext
         {
             applicationDbContext.Lines.Remove(line);
             await applicationDbContext.SaveChangesAsync(cancellationToken);
-            
+
             return new RepositoryResult(RepositoryResultCode.Success);
         }
         catch (OperationCanceledException exception)
