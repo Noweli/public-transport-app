@@ -2,5 +2,8 @@
 
 public enum RepositoryResultCode
 {
-    Success
+    Success,
+    NotFound,
+    Cancelled,
+    DbException
 }
