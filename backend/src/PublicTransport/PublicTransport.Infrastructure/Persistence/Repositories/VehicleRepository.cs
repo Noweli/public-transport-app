@@ -18,7 +18,7 @@ public sealed class VehicleRepository(ILogger<VehicleRepository> logger, Applica
             var addedVehicle = await applicationDbContext.Vehicles.AddAsync(vehicle, cancellationToken);
             await applicationDbContext.SaveChangesAsync(cancellationToken);
 
-            return new RepositoryResult<Guid>(RepositoryResultCode.Success, addedVehicle.Entity.Id);
+            return new RepositoryResult<Guid>(RepositoryResultCode.Created, addedVehicle.Entity.Id);
         }
         catch (OperationCanceledException exception)
         {
@@ -42,7 +42,7 @@ public sealed class VehicleRepository(ILogger<VehicleRepository> logger, Applica
 
             return vehicle is null
                 ? new RepositoryResult<Vehicle?>(RepositoryResultCode.NotFound, null)
-                : new RepositoryResult<Vehicle?>(RepositoryResultCode.Success, vehicle);
+                : new RepositoryResult<Vehicle?>(RepositoryResultCode.Found, vehicle);
         }
         catch (OperationCanceledException exception)
         {
@@ -62,7 +62,7 @@ public sealed class VehicleRepository(ILogger<VehicleRepository> logger, Applica
         try
         {
             var vehicles = await applicationDbContext.Vehicles.ToListAsync(cancellationToken);
-            return new RepositoryResult<IReadOnlyCollection<Vehicle>>(RepositoryResultCode.Success, vehicles);
+            return new RepositoryResult<IReadOnlyCollection<Vehicle>>(RepositoryResultCode.Found, vehicles);
         }
         catch (OperationCanceledException exception)
         {
@@ -83,7 +83,7 @@ public sealed class VehicleRepository(ILogger<VehicleRepository> logger, Applica
             applicationDbContext.Vehicles.Remove(vehicle);
             await applicationDbContext.SaveChangesAsync(cancellationToken);
 
-            return new RepositoryResult(RepositoryResultCode.Success);
+            return new RepositoryResult(RepositoryResultCode.Removed);
         }
         catch (OperationCanceledException exception)
         {

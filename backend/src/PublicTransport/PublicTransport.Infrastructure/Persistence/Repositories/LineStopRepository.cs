@@ -18,7 +18,7 @@ public sealed class LineStopRepository(ILogger<LineStopRepository> logger, Appli
             var addedLineStop = await applicationDbContext.LineStops.AddAsync(lineStop, cancellationToken);
             await applicationDbContext.SaveChangesAsync(cancellationToken);
 
-            return new RepositoryResult<Guid>(RepositoryResultCode.Success, addedLineStop.Entity.Id);
+            return new RepositoryResult<Guid>(RepositoryResultCode.Created, addedLineStop.Entity.Id);
         }
         catch (OperationCanceledException exception)
         {
@@ -44,7 +44,7 @@ public sealed class LineStopRepository(ILogger<LineStopRepository> logger, Appli
 
             return lineStop is null
                 ? new RepositoryResult<LineStop?>(RepositoryResultCode.NotFound, null)
-                : new RepositoryResult<LineStop?>(RepositoryResultCode.Success, lineStop);
+                : new RepositoryResult<LineStop?>(RepositoryResultCode.Found, lineStop);
         }
         catch (OperationCanceledException exception)
         {
@@ -70,7 +70,7 @@ public sealed class LineStopRepository(ILogger<LineStopRepository> logger, Appli
 
             return lineStop is null
                 ? new RepositoryResult<LineStop?>(RepositoryResultCode.NotFound, null)
-                : new RepositoryResult<LineStop?>(RepositoryResultCode.Success, lineStop);
+                : new RepositoryResult<LineStop?>(RepositoryResultCode.Found, lineStop);
         }
         catch (OperationCanceledException exception)
         {
@@ -90,7 +90,7 @@ public sealed class LineStopRepository(ILogger<LineStopRepository> logger, Appli
         try
         {
             var lineStops = await applicationDbContext.LineStops.ToListAsync(cancellationToken);
-            return new RepositoryResult<IReadOnlyCollection<LineStop>>(RepositoryResultCode.Success, lineStops);
+            return new RepositoryResult<IReadOnlyCollection<LineStop>>(RepositoryResultCode.Found, lineStops);
         }
         catch (OperationCanceledException exception)
         {
@@ -111,7 +111,7 @@ public sealed class LineStopRepository(ILogger<LineStopRepository> logger, Appli
             applicationDbContext.LineStops.Remove(lineStop);
             await applicationDbContext.SaveChangesAsync(cancellationToken);
 
-            return new RepositoryResult(RepositoryResultCode.Success);
+            return new RepositoryResult(RepositoryResultCode.Removed);
         }
         catch (OperationCanceledException exception)
         {

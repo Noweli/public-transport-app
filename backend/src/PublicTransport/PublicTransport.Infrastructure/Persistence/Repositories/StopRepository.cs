@@ -17,7 +17,7 @@ public sealed class StopRepository(ILogger<StopRepository> logger, ApplicationDb
             var addedStop = await applicationDbContext.Stops.AddAsync(stop, cancellationToken);
             await applicationDbContext.SaveChangesAsync(cancellationToken);
 
-            return new RepositoryResult<Guid>(RepositoryResultCode.Success, addedStop.Entity.Id);
+            return new RepositoryResult<Guid>(RepositoryResultCode.Created, addedStop.Entity.Id);
         }
         catch (OperationCanceledException exception)
         {
@@ -41,7 +41,7 @@ public sealed class StopRepository(ILogger<StopRepository> logger, ApplicationDb
 
             return stop is null
                 ? new RepositoryResult<Stop?>(RepositoryResultCode.NotFound, null)
-                : new RepositoryResult<Stop?>(RepositoryResultCode.Success, stop);
+                : new RepositoryResult<Stop?>(RepositoryResultCode.Found, stop);
         }
         catch (OperationCanceledException exception)
         {
@@ -64,7 +64,7 @@ public sealed class StopRepository(ILogger<StopRepository> logger, ApplicationDb
                 stop => stop.Street != null && stop.Street == street)
                 .ToListAsync(cancellationToken);
             
-            return new RepositoryResult<IReadOnlyCollection<Stop>>(RepositoryResultCode.Success, stops);
+            return new RepositoryResult<IReadOnlyCollection<Stop>>(RepositoryResultCode.Found, stops);
 
         }
         catch (OperationCanceledException exception)
@@ -84,7 +84,7 @@ public sealed class StopRepository(ILogger<StopRepository> logger, ApplicationDb
         try
         {
             var stops = await applicationDbContext.Stops.ToListAsync(cancellationToken);
-            return new RepositoryResult<IReadOnlyCollection<Stop>>(RepositoryResultCode.Success, stops);
+            return new RepositoryResult<IReadOnlyCollection<Stop>>(RepositoryResultCode.Found, stops);
         }
         catch (OperationCanceledException exception)
         {
@@ -105,7 +105,7 @@ public sealed class StopRepository(ILogger<StopRepository> logger, ApplicationDb
             applicationDbContext.Stops.Remove(stop);
             await applicationDbContext.SaveChangesAsync(cancellationToken);
 
-            return new RepositoryResult(RepositoryResultCode.Success);
+            return new RepositoryResult(RepositoryResultCode.Removed);
         }
         catch (OperationCanceledException exception)
         {

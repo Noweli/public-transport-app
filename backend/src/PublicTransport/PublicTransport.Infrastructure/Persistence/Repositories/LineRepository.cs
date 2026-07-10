@@ -17,7 +17,7 @@ public sealed class LineRepository(ILogger<LineRepository> logger, ApplicationDb
             var addedLine = await applicationDbContext.Lines.AddAsync(line, cancellationToken);
             await applicationDbContext.SaveChangesAsync(cancellationToken);
 
-            return new RepositoryResult<Guid>(RepositoryResultCode.Success, addedLine.Entity.Id);
+            return new RepositoryResult<Guid>(RepositoryResultCode.Created, addedLine.Entity.Id);
         }
         catch (OperationCanceledException exception)
         {
@@ -41,7 +41,7 @@ public sealed class LineRepository(ILogger<LineRepository> logger, ApplicationDb
 
             return line is null
                 ? new RepositoryResult<Line?>(RepositoryResultCode.NotFound, null)
-                : new RepositoryResult<Line?>(RepositoryResultCode.Success, line);
+                : new RepositoryResult<Line?>(RepositoryResultCode.Found, line);
         }
         catch (OperationCanceledException exception)
         {
@@ -61,7 +61,7 @@ public sealed class LineRepository(ILogger<LineRepository> logger, ApplicationDb
         try
         {
             var lines = await applicationDbContext.Lines.ToListAsync(cancellationToken);
-            return new RepositoryResult<IReadOnlyCollection<Line>>(RepositoryResultCode.Success, lines);
+            return new RepositoryResult<IReadOnlyCollection<Line>>(RepositoryResultCode.Found, lines);
         }
         catch (OperationCanceledException exception)
         {
@@ -82,7 +82,7 @@ public sealed class LineRepository(ILogger<LineRepository> logger, ApplicationDb
             applicationDbContext.Lines.Remove(line);
             await applicationDbContext.SaveChangesAsync(cancellationToken);
 
-            return new RepositoryResult(RepositoryResultCode.Success);
+            return new RepositoryResult(RepositoryResultCode.Removed);
         }
         catch (OperationCanceledException exception)
         {
