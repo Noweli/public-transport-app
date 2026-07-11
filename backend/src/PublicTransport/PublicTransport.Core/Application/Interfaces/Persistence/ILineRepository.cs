@@ -6,7 +6,7 @@ namespace PublicTransport.Core.Application.Interfaces.Persistence;
 public interface ILineRepository
 {
     Task<RepositoryResult<Guid>> CreateAsync(Line line, CancellationToken cancellationToken = default);
-    Task<RepositoryResult<Line>> GetByNameAsync(string name, CancellationToken cancellationToken = default);
+    Task<RepositoryResult<Line?>> GetByNameAsync(string name, CancellationToken cancellationToken = default);
     Task<RepositoryResult<IReadOnlyCollection<Line>>> GetAllAsync(CancellationToken cancellationToken = default);
     Task<RepositoryResult> DeleteAsync(Line line, CancellationToken cancellationToken = default);
 }

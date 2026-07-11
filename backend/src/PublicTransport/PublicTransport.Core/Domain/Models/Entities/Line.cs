@@ -4,4 +4,6 @@ public sealed class Line
 {
     public required Guid Id { get; set; }
     public required string Name { get; set; }
+
+    public IReadOnlyCollection<LineStop> LineStops { get; set; } = [];
 }

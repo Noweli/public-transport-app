@@ -1,0 +1,11 @@
+﻿datasources:
+  - name: Prometheus
+    type: prometheus
+    url: http://local-prometheus:9090
+    isDefault: true
+  - name: Tempo
+    type: tempo
+    url: http://local-grafana-tempo:3200
+  - name: Loki
+    type: loki
+    url: http://local-grafana-loki:3100

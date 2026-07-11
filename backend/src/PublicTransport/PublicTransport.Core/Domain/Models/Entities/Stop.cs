@@ -6,4 +6,6 @@ public sealed class Stop
     public required string Name { get; set; }
     public string? Street { get; set; }
     public required WGS84Coordinate Coordinate { get; set; }
+
+    public IReadOnlyCollection<LineStop> LineStops { get; set; } = [];
 }

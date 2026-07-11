@@ -1,0 +1,31 @@
+﻿receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+      http:
+        endpoint: 0.0.0.0:4318
+
+processors:
+  batch:
+
+exporters:
+  prometheus:
+    endpoint: "0.0.0.0:8889"
+  otlp/tempo:
+    endpoint: "local-grafana-tempo:4317"
+    tls: { insecure: true }
+  otlphttp/loki:
+    endpoint: "http://local-grafana-loki:3100/otlp"
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      exporters: [otlp/tempo]
+    metrics:
+      receivers: [otlp]
+      exporters: [prometheus]
+    logs:
+      receivers: [otlp]
+      exporters: [otlphttp/loki]

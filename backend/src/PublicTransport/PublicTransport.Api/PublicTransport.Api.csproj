@@ -11,6 +11,10 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\PublicTransport.Infrastructure\PublicTransport.Infrastructure.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
       <Folder Include="Controllers\" />
     </ItemGroup>
 

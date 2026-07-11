@@ -1,0 +1,86 @@
+services:
+  postgres:
+    image: docker.io/library/postgres:18
+    container_name: local-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: public-transport
+    ports: 
+      - "5432:5432"
+    volumes:
+      - pg-data:/var/lib/postgresql:Z
+    restart: always
+  
+  redis:
+    image: docker.io/library/redis:8.6.3
+    container_name: local-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data:Z
+    restart: always
+    
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:latest
+    container_name: local-otel-collector
+    command: [ "--config=/etc/otel-collector.yaml" ]
+    volumes:
+      - ./configs/otel-collector.yaml:/etc/otel-collector.yaml:Z
+    ports:
+      - "4317:4317"
+      - "4318:4318"
+      - "8889:8889"
+  
+  prometheus:
+    image: prom/prometheus:v3
+    container_name: local-prometheus
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --web.enable-remote-write-receiver
+    volumes:
+      - ./configs/prometheus.yml:/etc/prometheus/prometheus.yml:Z
+      - prom-data:/prometheus:Z
+    ports:
+      - "9090:9090"
+    
+  grafana-loki:
+    image: grafana/loki:3.7
+    container_name: local-grafana-loki
+    command: [ "-config.file=/etc/loki/local-config.yaml" ]
+    ports:
+      - "3100:3100"
+    volumes:
+      - ./configs/loki-config.yaml:/etc/loki/local-config.yaml:Z
+      - loki-data:/loki:Z
+    
+  grafana-tempo:
+    image: grafana/tempo:2.9.2
+    container_name: local-grafana-tempo
+    command: [ "-config.file=/etc/tempo.yaml" ]
+    volumes:
+      - ./configs/tempo.yaml:/etc/tempo.yaml:Z
+      - tempo-data:/var/tempo
+    ports:
+      - "3200:3200"
+
+  grafana:
+    image: docker.io/grafana/grafana:13.0
+    container_name: local-grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+    volumes:
+      - ./configs/datasources.yml:/etc/grafana/provisioning/datasources/datasources.yml:Z
+    restart: always
+    
+    
+volumes:
+  pg-data:
+  redis-data:
+  prom-data:
+  loki-data:
+  tempo-data:
